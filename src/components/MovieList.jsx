@@ -10,7 +10,7 @@ export default function MovieList({ movies }) {
             {movies.map((movie) => {
                 const thumb = movie.poster_path
                     ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
-                    : "https://via.placeholder.com/342x513?text=No+Poster";
+                    : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='342' height='513'%3E%3Crect fill='%23cccccc' width='342' height='513'/%3E%3Ctext x='50%25' y='50%25' font-size='32' fill='%23666666' text-anchor='middle' dominant-baseline='middle'%3ENo Poster%3C/text%3E%3C/svg%3E";
 
                 const year = movie.release_date ? movie.release_date.split("-")[0] : "N/A";
 

@@ -5,7 +5,6 @@ export default function MovieSearch() {
     const [searchString, setSearchString] = useState("");
     const [genres, setGenres] = useState([]);
     const [currentGenre, setCurrentGenre] = useState(-1);
-    const [topRated, setTopRated] = useState([]);
     const [results, setResults] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [maxPage, setMaxPage] = useState(50);
@@ -43,8 +42,7 @@ export default function MovieSearch() {
                         results.forEach((element) => {
                             element.genre_ids = element.genre_ids.map((x) => genres.find((y) => y.id == x).name);
                         });
-                        setResults(showSearchResults ? results : []);
-                        setTopRated(!showSearchResults ? results : []);
+                        setResults(results);
                     })
                     .catch((err) => console.error(err));
             }, 500);
@@ -53,7 +51,6 @@ export default function MovieSearch() {
         }
     }, [currentPage, searchString, showSearchResults, genres, options, currentGenre]);
     const isSearchActive = searchString.trim().length > 0;
-    const displayedMovies = isSearchActive ? results : topRated;
     const calculatePages = () => {
         const pages = [];
         const maxVisible = 5;
@@ -109,10 +106,10 @@ export default function MovieSearch() {
 
             <section className="movie-results">
                 <h2>{isSearchActive ? "Search Results" : "Top Rated Movies"}</h2>
-                {displayedMovies.length === 0 ? (
+                {results.length === 0 ? (
                     <div className="movie-none">No movies available.</div>
                 ) : (
-                    <MovieList movies={displayedMovies} />
+                    <MovieList movies={results} />
                 )}
             </section>
 
