@@ -1,0 +1,18 @@
+Unit Testing: Write unit tests using React Testing Library for all React components, including:
+- When bad query is entered, show no results
+- Check filter works, by adding hidden input to say genres and make sure all remaining ones have it in the name
+- Pagination? Check if clicking forward and back change the page number
+- If a movie ID doesn't exist, make sure error
+-
+Debugging: Identify and fix bugs or errors in the existing code, including broken functionality, UI glitches, or console errors.
+- When a movie ID doesn't exist, show error screen instead of blank details page
+
+
+Performance Improvement: Optimize the application using React performance tools:
+- Move genre selector out of fetch to not refresh on genre change
+
+
+Responsive Design & Accessibility: Ensure the application works correctly on desktop, tablet, and mobile devices and meets basic accessibility standards.
+- Removing padding from main screen to removing scrolling on mobile
+- Adding a max-width to movie details to prevent side scrolling on mobile
+
