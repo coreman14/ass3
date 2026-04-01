@@ -8,7 +8,6 @@ body {
 .movie-search-page {
   width: min(1200px, 96vw);
   margin: 1rem auto;
-  padding: 0.8rem;
 }
 
 .movie-search-header {
@@ -133,6 +132,7 @@ body {
   background: #1f2d39;
   border-radius: 0.7rem;
   border: 1px solid #2e4257;
+  max-width: 90%;
 }
 
 .movie-back-link {
