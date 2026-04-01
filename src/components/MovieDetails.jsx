@@ -17,12 +17,18 @@ export default function MovieDetails() {
                 accept: "application/json",
                 Authorization: `Bearer ${api}`,
             },
+            
         })
-            .then((x) => x.json())
+            .then((x) => {
+                if (!x.ok){
+                    setError("Could not find movie ID: " + movieId);
+                    return;
+                }
+                return x.json()})
             .then((x) => {
                 setDetails(x);
             })
-            .catch((e) => setError(e))
+            .catch((e) => {setError(e)})
             .finally(() => setFetched(true));
     }, [api, movieId]);
 
