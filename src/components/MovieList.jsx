@@ -23,6 +23,7 @@ export default function MovieList({ movies }) {
                                 <div className="movie-meta">
                                     <span>{movie.vote_average ? movie.vote_average.toFixed(1) : "--"} ★</span>
                                     <span>{year}</span>
+                                    <input type="hidden" value={movie.genre_names.join("-")}/>
                                 </div>
                             </div>
                         </Link>
