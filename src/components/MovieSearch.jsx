@@ -36,11 +36,9 @@ export default function MovieSearch() {
                     .then((res) => res.json())
                     .then((results) => {
                         setMaxPage(results.total_pages);
-                        results = results.results.filter(
-                            (x) => currentGenre == -1 || x.genre_ids.includes(currentGenre),
-                        );
+                        results = results.results;
                         results.forEach((element) => {
-                            element.genre_ids = element.genre_ids.map((x) => genres.find((y) => y.id == x).name);
+                            element.genre_names = element.genre_ids.map((x) => genres.find((y) => y.id == x).name);
                         });
                         setResults(results);
                     })
@@ -49,7 +47,7 @@ export default function MovieSearch() {
 
             return () => clearTimeout(timeoutId);
         }
-    }, [currentPage, searchString, showSearchResults, genres, options, currentGenre]);
+    }, [currentPage, searchString, showSearchResults, genres, options]);
     const isSearchActive = searchString.trim().length > 0;
     const calculatePages = () => {
         const pages = [];
@@ -69,7 +67,7 @@ export default function MovieSearch() {
         return pages;
     };
 
-
+    const movieResults = results.filter((x) => currentGenre == -1 || x.genre_ids.includes(currentGenre));
 
     return (
         <div className="movie-search-page">
@@ -109,7 +107,7 @@ export default function MovieSearch() {
                 {results.length === 0 ? (
                     <div className="movie-none">No movies available.</div>
                 ) : (
-                    <MovieList movies={results} />
+                    <MovieList movies={movieResults} />
                 )}
             </section>
 
